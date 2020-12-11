@@ -8,3 +8,44 @@
 [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
 Подсказка: использовать менеджер контекста.
 '''
+import json
+def adding_dist(el):
+    key = el[0]
+    number_of_classes = int(el[2]) - int(el[3])
+    # for i in el:
+    #     if i.endswith('(л)'):
+    #         number = int((i.replace('(л)','')))
+    #         number_of_classes.append(number)
+    #     elif i.endswith('(пр)'):
+    #         number = int((i.replace('(пр)','')))
+    #         number_of_classes.append(number)
+    #     elif i.endswith('(лаб)'):
+    #         number = int((i.replace('(лаб)','')))
+    #         number_of_classes.append(number)
+    # summa = sum(number_of_classes)
+    dist = { key: number_of_classes}
+    return dist
+
+
+
+f = open ("test_7.txt", "r", encoding="utf-8")
+file = f.readlines()
+result = {}
+outcome = []
+for el in range(len(file)):
+    line = file[el].split()
+    result.update(adding_dist(line))
+# print(result)
+outcome.append(result)
+profit = []
+for el in result.values():
+    if el > 0:
+        profit.append(el)
+average_profit = sum(profit) / len(profit)
+outcome.append({'average_profit': average_profit})
+
+with open("my_file.json", "w", encoding="utf-8") as write_f:
+    json.dump(outcome, write_f)
+
+print(outcome)
+f.close()

@@ -12,4 +12,4 @@ with open ("test_1.txt", "w") as text:
 text = open ("test_1.txt", "r")
 text_2 = text.read()
 print(text_2)
-text_2 = text.read()
+# text_2 = text.read()
